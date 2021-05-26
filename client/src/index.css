@@ -15,6 +15,9 @@
   filter: invert(1);
 }
 
+#theme {
+  display: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

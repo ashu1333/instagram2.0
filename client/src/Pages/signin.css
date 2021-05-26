@@ -1,0 +1,114 @@
+.auth {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.phone-photo {
+  height: 450px;
+
+  padding-top: 50px;
+  margin: 10px;
+}
+.right-side {
+  margin-top: 50px;
+}
+
+.right-column {
+  background-color: #ffffff;
+  border: 1px solid #e6e6e6;
+  width: 350px;
+
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.insta-logo {
+  padding: 60px;
+  width: 200px;
+  padding: 10px;
+}
+
+.text-for-member {
+  font-weight: 600;
+  line-height: 20px;
+  font-size: 17px;
+  color: rgb(92, 90, 90);
+  margin-bottom: 20px;
+}
+
+form {
+  margin-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 6px !important;
+}
+
+.form-control {
+  background: #f1f1f1 !important;
+  border: 1px solid #efefef;
+}
+::placeholder {
+  color: #999 !important;
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 6px !important;
+  font-weight: 600 !important;
+}
+
+.btn-primary {
+  background-color: #3897f0 !important;
+  border: 1px solid #3897;
+}
+
+.site-rules {
+  line-height: 18px;
+  font-size: 14px;
+  color: #999;
+  margin: 15px 20px;
+}
+
+.right-column-login {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  width: 350px;
+  margin-top: 10px;
+  padding: 20px;
+  /* margin-left: 80px; */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.right-column-login :hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 950px) {
+  .phone-photo {
+    display: none;
+  }
+
+  .auth {
+    position: relative;
+  }
+
+  .right-side {
+    position: absolute;
+    left: 30%;
+
+    transform: translateY(-50%, -50%);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .photo-section {
+    display: none;
+  }
+
+  .right-side {
+    left: 0%;
+    right: 0%;
+  }
+}
