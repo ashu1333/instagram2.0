@@ -29,11 +29,7 @@ mongoose.connect(
 );
 
 //ROUTING
-app.get("/", (req, res) => {
-  res.send({
-    msg: "hii running",
-  });
-});
+app.use("/api", require("./routes/authRouter"));
 
 //SERVER
 const PORT = process.env.PORT || 8000;
