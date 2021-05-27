@@ -4,8 +4,8 @@
 }
 
 .phone-photo {
-  height: 450px;
-
+  height: 500px;
+  float: right;
   padding-top: 50px;
   margin: 10px;
 }
@@ -85,6 +85,19 @@ form {
   text-decoration: none;
 }
 
+.pass {
+  position: relative;
+}
+
+.pass small {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 @media screen and (max-width: 950px) {
   .phone-photo {
     display: none;
@@ -107,8 +120,11 @@ form {
     display: none;
   }
 
+  .right-column {
+    width: 320px;
+  }
   .right-side {
-    left: 0%;
+    left: 2%;
     right: 0%;
   }
 }

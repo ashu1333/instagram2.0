@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../redux/actions/authAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./signin.css";
 
 const Signin = () => {
   const intialState = { email: "", password: "" };
   const [userData, setUserData] = useState(intialState);
   const { email, password } = userData;
+  const [typePass, setTypePass] = useState(false);
   const dispatch = useDispatch();
+
+  const { auth } = useSelector((state) => state);
+
+  const history = useHistory();
+  useEffect(() => {
+    if (auth.token) history.push("/");
+  }, [auth.token, history]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -21,14 +31,14 @@ const Signin = () => {
   return (
     <div className="auth">
       <div className="row  ">
-        <div className="col-md-6 ">
+        <div className="col-md-8 ">
           <img
             src="https://res.cloudinary.com/drwb19czo/image/upload/v1591473701/PixelBook_Go_and_Pixel_4_XL_3_tqf7oq.png"
             className="phone-photo"
           />
         </div>
 
-        <div className="col-md-6 col-sm-4 right-side mt-10">
+        <div className="col-md-4  right-side mt-10">
           <div className="right-column text-center">
             <img
               src="https://clipart.info/images/ccovers/1522452762Instagram-logo-png-text.png"
@@ -50,14 +60,19 @@ const Signin = () => {
                 />
               </div>
               <div className="form-group">
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  placeholder="Password"
-                  onChange={handleChangeInput}
-                  value={password}
-                />
+                <div className="pass">
+                  <input
+                    type={typePass ? "text" : "password"}
+                    name="password"
+                    className="form-control"
+                    placeholder="Password"
+                    onChange={handleChangeInput}
+                    value={password}
+                  />
+                  <small onClick={() => setTypePass(!typePass)}>
+                    {typePass ? "Hide" : "Show"}
+                  </small>
+                </div>
               </div>
               <button
                 type="submit"

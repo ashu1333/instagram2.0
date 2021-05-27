@@ -76,9 +76,9 @@ const authCtrl = {
         return res.status(400).json({ msg: "Password is incorrect." });
 
       const access_token = createAcessToken({ id: user._id });
-      console.log(access_token);
+      // console.log(access_token);
       const refresh_token = createRefreshToken({ id: user._id });
-
+      console.log("refresh" + refresh_token);
       res.cookie("refreshtoken", refresh_token, {
         httpOnly: true,
         path: "/api/refresh_token",
@@ -114,6 +114,8 @@ const authCtrl = {
   generateAcessToken: async (req, res) => {
     try {
       const rf_token = req.cookies.refreshtoken;
+
+      console.log("rf_token" + rf_token);
       if (!rf_token) return res.status(400).json({ msg: "Please login Now" });
 
       jwt.verify(
@@ -132,7 +134,7 @@ const authCtrl = {
           console.log(user);
           if (!user)
             return res.status(400).json({ msg: "This does not exist." });
-          const access_token = createAccessToken({ id: result.id });
+          const access_token = createAcessToken({ id: result.id });
 
           res.json({
             access_token,
