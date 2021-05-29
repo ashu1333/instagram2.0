@@ -1,5 +1,6 @@
 import { GLOBALTYPES } from "./globalTypes";
 import { postDataAPI } from "../../utils/fetchData";
+import validation from "../../utils/validation";
 
 //LOGIN
 export const login = (data) => async (dispatch) => {
@@ -25,16 +26,6 @@ export const login = (data) => async (dispatch) => {
         error: err.response.data.msg,
       },
     });
-  }
-};
-
-//REGISTER
-export const register = (data) => async (dispatch) => {
-  try {
-    const res = await postDataAPI("register", data);
-    console.log(res);
-  } catch (err) {
-    console.log(err);
   }
 };
 
@@ -64,5 +55,52 @@ export const refreshToken = () => async (dispatch) => {
         },
       });
     }
+  }
+};
+
+//REGISTER
+export const register = (data) => async (dispatch) => {
+  console.log(data);
+  const check = validation(data);
+  if (check.errLength > 0)
+    return dispatch({ type: GLOBALTYPES.ALERT, payload: check.errMsg });
+
+  try {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
+    const res = await postDataAPI("register", data);
+    localStorage.setItem("firstLogin", true);
+    console.log(res);
+    dispatch({
+      type: GLOBALTYPES.AUTH,
+      payload: {
+        token: res.data.access_token,
+        user: res.data.user,
+      },
+    });
+
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: {
+        error: err.response.data.msg,
+      },
+    });
+  }
+};
+
+export const logout = () => async (dispatch) => {
+  try {
+    localStorage.removeItem("firstLogin");
+    await postDataAPI("logout");
+    window.location.href = "/";
+  } catch (err) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: {
+        error: err.response.data.msg,
+      },
+    });
   }
 };

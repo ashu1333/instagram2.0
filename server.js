@@ -39,6 +39,7 @@ mongoose.connect(
 
 //ROUTING
 app.use("/api", require("./routes/authRouter"));
+app.use("/api", require("./routes/userRouter"));
 
 //SERVER
 const PORT = process.env.PORT || 8000;

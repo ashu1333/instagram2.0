@@ -6,6 +6,7 @@ import PageRender from "./PageRender";
 import Signin from "./Pages/signin";
 import Signup from "./Pages/signup";
 import Alert from "./Component/Alert/Alert";
+import Header from "./Component/Header/Header";
 import Home from "./Pages/Home";
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
       <input type="checkbox" id="theme" />
       <div className="App">
         <div className="main">
+          {auth.token && <Header />}
           <Route exact path="/" component={auth.token ? Home : Signin} />
           <Route exact path="/register" component={Signup} />
           <Route exact path="/:page" component={PageRender} />

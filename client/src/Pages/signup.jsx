@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import "./signin.css";
 
 const Signup = () => {
-  const { auth } = useSelector((state) => state);
+  const { auth, alert } = useSelector((state) => state);
+  console.log(alert);
   const history = useHistory();
 
   useEffect(() => {
@@ -20,12 +21,13 @@ const Signup = () => {
     username: "",
     email: "",
     password: "",
-    c_password: "",
+    cf_password: "",
     gender: "male",
   };
   const [userData, setUserData] = useState(initialState);
-  const { fullname, username, email, password, c_password } = userData;
+  const { fullname, username, email, password, cf_password } = userData;
   const [typePass, setTypePass] = useState(false);
+  const [typeCfPass, setTypeCfPass] = useState(false);
   const dispatch = useDispatch();
 
   const handleChangeInput = (e) => {
@@ -34,6 +36,7 @@ const Signup = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log(userData);
     e.preventDefault();
     dispatch(register(userData));
   };
@@ -66,8 +69,15 @@ const Signup = () => {
                   placeholder="Fullname"
                   onChange={handleChangeInput}
                   value={fullname}
+                  style={{
+                    background: `${alert.fullname ? "#fd2d6a14" : "#f1f1f1"}`,
+                  }}
                 />
+                <small className="form-text text-danger">
+                  {alert.fullname ? alert.fullname : ""}
+                </small>
               </div>
+
               <div className="form-group">
                 <input
                   type="text"
@@ -76,7 +86,13 @@ const Signup = () => {
                   placeholder="Username"
                   onChange={handleChangeInput}
                   value={username}
+                  style={{
+                    background: `${alert.username ? "#fd2d6a14" : "#f1f1f1"}`,
+                  }}
                 />
+                <small className="form-text text-danger">
+                  {alert.username ? alert.username : ""}
+                </small>
               </div>
               <div className="form-group">
                 <input
@@ -86,7 +102,13 @@ const Signup = () => {
                   placeholder="Email"
                   onChange={handleChangeInput}
                   value={email}
+                  style={{
+                    background: `${alert.email ? "#fd2d6a14" : "#f1f1f1"}`,
+                  }}
                 />
+                <small className="form-text text-danger">
+                  {alert.email ? alert.email : ""}
+                </small>
               </div>
               <div className="form-group">
                 <div className="pass">
@@ -97,21 +119,40 @@ const Signup = () => {
                     placeholder="Password"
                     onChange={handleChangeInput}
                     value={password}
+                    style={{
+                      background: `${alert.password ? "#fd2d6a14" : "#f1f1f1"}`,
+                    }}
                   />
                   <small onClick={() => setTypePass(!typePass)}>
                     {typePass ? "Hide" : "Show"}
                   </small>
                 </div>
+                <small className="form-text text-danger">
+                  {alert.password ? alert.password : ""}
+                </small>
               </div>
               <div className="form-group">
-                <input
-                  type="password"
-                  name="c_password"
-                  className="form-control"
-                  placeholder="Confirm Password"
-                  onChange={handleChangeInput}
-                  value={c_password}
-                />
+                <div className="pass">
+                  <input
+                    type={typeCfPass ? "text" : "password"}
+                    name="cf_password"
+                    className="form-control"
+                    placeholder="Confirm Password"
+                    onChange={handleChangeInput}
+                    value={cf_password}
+                    style={{
+                      background: `${
+                        alert.cf_password ? "#fd2d6a14" : "#f1f1f1"
+                      }`,
+                    }}
+                  />
+                  <small onClick={() => setTypeCfPass(!typeCfPass)}>
+                    {typeCfPass ? "Hide" : "Show"}
+                  </small>
+                </div>
+                <small className="form-text text-danger">
+                  {alert.cf_password ? alert.cf_password : ""}
+                </small>
               </div>
               <div
                 className="check mt-10"
@@ -125,33 +166,40 @@ const Signup = () => {
               >
                 <div>
                   <input
-                    type="checkbox"
-                    name="password"
-                    placeholder="Password"
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    value="male"
+                    defaultChecked
+                    onChange={handleChangeInput}
                   />{" "}
                   <label>Male</label>
                 </div>
                 <div>
                   {" "}
                   <input
-                    type="checkbox"
-                    name="password"
-                    placeholder="Password"
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="female"
+                    onChange={handleChangeInput}
                   />{" "}
                   <label>Female</label>
                 </div>
                 <div>
                   {" "}
                   <input
-                    type="checkbox"
-                    name="password"
-                    placeholder="Password"
+                    type="radio"
+                    id="other"
+                    name="gender"
+                    value="other"
+                    onChange={handleChangeInput}
                   />{" "}
                   <label>Other</label>
                 </div>
               </div>
               <button type="submit" className="btn btn-primary btn-block">
-                Sign in
+                Sign up
               </button>
             </form>
 
@@ -163,7 +211,7 @@ const Signup = () => {
 
           <div className="right-column-login text-center">
             <p>
-              Have`n account yet? <a href="/signin">Sign in</a>
+              Have a account? <a href="/signin">Sign in</a>
             </p>
           </div>
         </div>
