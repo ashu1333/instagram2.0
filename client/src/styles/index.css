@@ -36,3 +36,5 @@ code {
   min-height: 100vh;
   margin: auto;
 }
+
+@import url("./profile.css");

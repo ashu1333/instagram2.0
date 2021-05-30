@@ -1,11 +1,47 @@
 /*=========HEADER==========*/
 
 .header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-height: 70px;
   box-shadow: 0 0 10px #ddd;
   background: #f8f9fa;
   border: 1px solid rgb(0, 0, 0, 0.125);
 }
 
+.header .navbar {
+  width: 100%;
+  height: 100%;
+}
+
+.header .logo h1 {
+  font-size: 2rem;
+}
+
+/*----------HEADER EMNU---------*/
+.header .menu li {
+  opacity: 0.6;
+}
+
+.header .menu li.active {
+  opacity: 1;
+}
+
+/* .header .menu .material-icons-oulined {
+  font-size: 60px;
+} */
+
+.header .menu .dropdown-menu {
+  position: absolute;
+  left: inherit;
+  right: 0;
+}
+
+.header .menu label {
+  cursor: pointer;
+}
 /*=========HEADER SEARCH==========*/
 
 .header .search_form {
