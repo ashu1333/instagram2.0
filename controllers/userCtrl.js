@@ -27,6 +27,92 @@ const userCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+
+  updateUser: async (req, res) => {
+    try {
+      const { avatar, fullname, mobile, address, story, website, gender } =
+        req.body;
+
+      if (!fullname)
+        return res.status(404).json({ msg: "Please add your name" });
+
+      await Users.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          avatar,
+          fullname,
+          mobile,
+          address,
+          story,
+          website,
+          gender,
+        }
+      );
+
+      res.json({ msg: "UPDATE SUCCESSFUL" });
+    } catch (err) {
+      return res.status(400).json({ msg: err.message });
+    }
+  },
+
+  follow: async (req, res) => {
+    try {
+      const user = await Users.find({
+        _id: req.params.id,
+        followers: req.user._id,
+      });
+      if (user.length > 0) {
+        return res.status(500).json({ msg: "You followed this user" });
+      }
+      const newUser = await Users.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: { followers: req.user._id },
+        },
+        { new: true }
+      ).populate("followers following", "-password");
+
+      await Users.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          $push: {
+            following: req.params.id,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+
+      res.json({ newUser });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  unfollow: async (req, res) => {
+    try {
+      const newUser = await Users.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { followers: req.user._id },
+        },
+        { new: true }
+      ).populate("followers following", "-password");
+
+      await Users.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          $pull: { following: req.params.id },
+        },
+        { new: true }
+      );
+
+      res.json({ msg: "Unfollowed User" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = userCtrl;

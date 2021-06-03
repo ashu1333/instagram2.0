@@ -4,11 +4,11 @@
   width: 100%;
   position: sticky;
   top: 0;
-  left: 0;
+  left: -10;
   min-height: 70px;
-  box-shadow: 0 0 10px #ddd;
-  background: #f8f9fa;
-  border: 1px solid rgb(0, 0, 0, 0.125);
+  /* box-shadow: 0 0 10px #ddd; */
+  background: white;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.125);
 }
 
 .header .navbar {
@@ -17,7 +17,7 @@
 }
 
 .header .logo h1 {
-  font-size: 2rem;
+  font-size: 1.3rem;
 }
 
 /*----------HEADER EMNU---------*/
@@ -118,6 +118,7 @@
   }
   .header .logo {
     margin: auto;
+    align-items: center;
   }
 
   .header .search_wrapper {

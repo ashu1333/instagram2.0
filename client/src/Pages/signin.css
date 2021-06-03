@@ -1,6 +1,7 @@
 .auth {
   width: 100%;
   min-height: 100vh;
+  background: #fafafa;
 }
 
 .phone-photo {
@@ -46,7 +47,7 @@ form {
 
 .form-control {
   /* background: #d10808 !important; */
-  border: 1px solid #efefef;
+  border: 2px solid #efefef;
 }
 ::placeholder {
   color: #999 !important;

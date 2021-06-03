@@ -10,7 +10,12 @@ const Avatar = ({ src, size }) => {
       alt="avatar"
       // className={size}
       // style={{ filter: `${theme ? 'invert(1)' : 'invert(0)'}` }}
-      style={{ width: "8rem", height: "8rem", borderRadius: "100%" }}
+      style={{
+        width: "8rem",
+        height: "8rem",
+        borderRadius: "100%",
+        objectFit: "cover",
+      }}
     />
   );
 };
