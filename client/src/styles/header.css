@@ -4,8 +4,9 @@
   width: 100%;
   position: sticky;
   top: 0;
-  left: -10;
+  left: 0;
   min-height: 70px;
+  z-index: 2;
   /* box-shadow: 0 0 10px #ddd; */
   background: white;
   border-bottom: 1px solid rgb(0, 0, 0, 0.125);
@@ -86,12 +87,10 @@
   position: absolute;
   width: 100%;
   min-width: 50%;
-  background: white;
+  background-color: white;
   max-height: calc(100vh - 300px);
   overflow: auto;
   margin-top: 3px;
-
-  overflow: auto;
 }
 
 @media (max-width: 768px) {

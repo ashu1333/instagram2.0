@@ -32,7 +32,7 @@ const Info = () => {
     <div className="info">
       {userData.map((user) => (
         <div className="info_container">
-          <Avatar src={user.avatar} />
+          <Avatar src={user.avatar} size="supper-avatar" />
           <div className="info_content">
             <div className="info_content_title">
               <h2>{user.username}</h2>

@@ -113,7 +113,7 @@ export const follow =
       });
     }
 
-    //CHANGE IN LOGGED IN USER DATA STATE
+    // CHANGE IN LOGGED IN USER DATA STATE
     dispatch({
       type: GLOBALTYPES.AUTH,
       payload: {
@@ -122,7 +122,7 @@ export const follow =
       },
     });
 
-    // CHANGE IN USER DATA STATE
+    // // CHANGE IN USER DATA STATE
     dispatch({ type: PROFILE_TYPES.FOLLOW, payload: newUser });
 
     try {

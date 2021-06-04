@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/authAction";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
+import Avatar from "../Avatar";
 
 const Menu = () => {
   const navLinks = [
@@ -51,7 +52,7 @@ const Menu = () => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span class="material-icons-outlined ">account_circle</span>
+            <Avatar src={auth.user.avatar} size="medium-avatar" />
           </span>
 
           <div
@@ -59,7 +60,7 @@ const Menu = () => {
             aria-labelledby="navbarDropdown"
             style={{}}
           >
-            <Link class="dropdown-item" href="#">
+            <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
               Profile
             </Link>
 

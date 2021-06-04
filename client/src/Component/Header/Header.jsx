@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import Search from "./Search";
 import Logo from "../../images/instagram.png";
-import "./header.css";
+
 const Header = () => {
   return (
     <div className="header   ">

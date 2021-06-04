@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
+import Avatar from "./Avatar";
 
-import "./Header/header.css";
 const UserCard = ({
   children,
   user,
@@ -16,7 +16,7 @@ const UserCard = ({
   };
   return (
     <div
-      className={`d-flex p-2 align-items-center  justify-content-between w-100  ${border}`}
+      className={`d-flex p-2 align-items-center d-block justify-content-between w-100  ${border}`}
     >
       <div>
         <Link
@@ -25,10 +25,10 @@ const UserCard = ({
           style={{ textDecoration: "none", color: "inherit" }}
           onClick={handleCloseAll}
         >
-          <span class="material-icons-outlined ">account_circle</span>
+          <Avatar src={user.avatar} size={"big-avatar"} />
           <div className="ml-2">
             <span className="d-block">{user.username}</span>
-            <small>{user.fullname}</small>
+            <small style={{ opacity: 0.7 }}>{user.fullname}</small>
           </div>
         </Link>
       </div>

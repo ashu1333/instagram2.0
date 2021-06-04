@@ -37,4 +37,9 @@ code {
   margin: auto;
 }
 
+@import url("./header.css");
+
 @import url("./profile.css");
+@import url("./avatar.css");
+@import url("./home.css");
+@import url("./status-modal.css");

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Followers = ({ users, setShowFollowers }) => {
   const { auth } = useSelector((state) => state);
+  console.log(users);
   return (
     <div className="follow">
       <div className="follow-box">

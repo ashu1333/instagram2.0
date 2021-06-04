@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
-import "./header.css";
+
 import { getDataAPI } from "../../utils/fetchData";
 import UserCard from "../UserCard";
 const Search = () => {
@@ -55,7 +55,7 @@ const Search = () => {
         <div
           className="close_search"
           onClick={handleClose}
-          style={{ opacity: users?.length === 0 ? 0 : 1 }}
+          style={{ opacity: users.length === 0 ? 0 : 1 }}
         >
           &times;
         </div>
