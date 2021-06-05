@@ -20,3 +20,32 @@
 .status .statusBtn:hover {
   background: #ddd;
 }
+
+/*=========POST=======*/
+
+.posts .card {
+  box-shadow: 0 0 4px #ddd;
+}
+.posts .card_header {
+  padding: 15px 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.posts .card_header .card_name {
+  transform: translateY(1px);
+  padding-left: 10px;
+}
+
+.posts .card_header .dropdown-menu {
+  position: absolute;
+  right: 0;
+  left: inherit;
+}
+
+.posts .card_header .dropdown-item {
+  display: flex;
+  margin: 5px 0;
+}

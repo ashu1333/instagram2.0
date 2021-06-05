@@ -2,11 +2,12 @@ import { useRef } from "react";
 import { GLOBALTYPES } from "../redux/actions/globalTypes";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { createPost } from "../redux/actions/postAction";
 const StatusModal = () => {
   const [images, setImages] = useState([]);
   const [content, setContent] = useState("");
   const [stream, setStream] = useState(false);
-  const [tracks, setTracks] = useState([]);
+  const [tracks, setTracks] = useState("");
   const dispatch = useDispatch();
   const videoRef = useRef();
   const refCanvas = useRef();
@@ -80,9 +81,25 @@ const StatusModal = () => {
     setStream(false);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (images.length === 0) {
+      return dispatch({
+        type: GLOBALTYPES.ALERT,
+        payload: { error: "Please Add your photo" },
+      });
+    }
+
+    dispatch(createPost({ content, images, auth }));
+    setContent("");
+    setImages([]);
+    if (tracks) tracks.stop();
+    dispatch({ type: GLOBALTYPES.STATUS, payload: false });
+  };
+
   return (
     <div className="status_modal">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="status_header">
           <div className=""></div>
           <h5 className="m-0">Create Post</h5>

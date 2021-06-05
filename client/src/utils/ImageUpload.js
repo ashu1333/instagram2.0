@@ -17,7 +17,12 @@ export const imageUpload = async (images) => {
   for (const item of images) {
     const formData = new FormData();
 
-    formData.append("file", item);
+    if (item.camera) {
+      formData.append("file", item.camera);
+    } else {
+      formData.append("file", item);
+    }
+
     formData.append("upload_preset", "efxjficn");
     formData.append("cloud_name", "devat-channel");
 

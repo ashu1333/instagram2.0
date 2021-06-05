@@ -10,6 +10,7 @@ import Header from "./Component/Header/Header";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import StatusModal from "./Component/StatusModal";
+import { getPosts } from "./redux/actions/postAction";
 function App() {
   const dispatch = useDispatch();
   const { auth, status } = useSelector((state) => state);
@@ -18,6 +19,11 @@ function App() {
     dispatch(refreshToken());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (auth.token) {
+      dispatch(getPosts(auth.token));
+    }
+  }, [auth.token, dispatch]);
   return (
     <Router>
       <Alert />
@@ -26,7 +32,7 @@ function App() {
         <div className="main">
           {auth.token && <Header />}
           {status && <StatusModal />}
-
+          {/* <Dummy /> */}
           <Route exact path="/" component={auth.token ? Home : Signin} />
           <Route exact path="/register" component={Signup} />
           {/* <Route exact path="/:page" component={PageRender} />
