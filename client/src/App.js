@@ -29,8 +29,9 @@ function App() {
       <Alert />
       <input type="checkbox" id="theme" />
       <div className="App">
+        <div className="header_container">{auth.token && <Header />}</div>
+
         <div className="main">
-          {auth.token && <Header />}
           {status && <StatusModal />}
           {/* <Dummy /> */}
           <Route exact path="/" component={auth.token ? Home : Signin} />

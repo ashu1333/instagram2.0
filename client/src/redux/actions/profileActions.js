@@ -42,6 +42,8 @@ export const getProfileUsers =
 export const updateProfileuser =
   ({ userData, avatar, auth }) =>
   async (dispatch) => {
+    console.log(auth.user);
+    console.log(userData);
     if (!userData.fullname) {
       return dispatch({
         type: GLOBALTYPES.ALERT,

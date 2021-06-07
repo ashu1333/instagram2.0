@@ -8,12 +8,11 @@ const Post = () => {
 
   return (
     <div className="posts">
-      hii
       {homePosts.posts.map((post) => (
         <div className="card my-3">
           <CardHeader post={post} />
-          <CardBody />
-          <CardFooter />
+          <CardBody post={post} />
+          <CardFooter post={post} />
         </div>
       ))}
     </div>

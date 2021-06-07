@@ -1,8 +1,8 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { GLOBALTYPES } from "../redux/actions/globalTypes";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createPost } from "../redux/actions/postAction";
+import { createPost, updatePost } from "../redux/actions/postAction";
 const StatusModal = () => {
   const [images, setImages] = useState([]);
   const [content, setContent] = useState("");
@@ -11,7 +11,14 @@ const StatusModal = () => {
   const dispatch = useDispatch();
   const videoRef = useRef();
   const refCanvas = useRef();
-  const { auth, theme } = useSelector((state) => state);
+  const { auth, theme, status } = useSelector((state) => state);
+
+  useEffect(() => {
+    if (status.onEdit) {
+      setContent(status.content);
+      setImages(status.images);
+    }
+  }, [status]);
 
   const handleChangeImages = (e) => {
     const files = [...e.target.files];
@@ -90,7 +97,12 @@ const StatusModal = () => {
       });
     }
 
-    dispatch(createPost({ content, images, auth }));
+    if (status.onEdit) {
+      dispatch(updatePost({ content, images, auth, status }));
+    } else {
+      dispatch(createPost({ content, images, auth }));
+    }
+
     setContent("");
     setImages([]);
     if (tracks) tracks.stop();
@@ -123,7 +135,13 @@ const StatusModal = () => {
             {images.map((image, index) => (
               <div key={index} id="file_img">
                 <img
-                  src={image.camera ? image.camera : URL.createObjectURL(image)}
+                  src={
+                    image.camera
+                      ? image.camera
+                      : image.url
+                      ? image.url
+                      : URL.createObjectURL(image)
+                  }
                   alt="image"
                   className="img-thumbnail"
                   style={{ filter: theme ? "invert(1)" : "invert(0)" }}
