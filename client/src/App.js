@@ -13,7 +13,7 @@ import StatusModal from "./Component/StatusModal";
 import { getPosts } from "./redux/actions/postAction";
 function App() {
   const dispatch = useDispatch();
-  const { auth, status } = useSelector((state) => state);
+  const { auth, status, modal } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(refreshToken());
@@ -28,12 +28,13 @@ function App() {
     <Router>
       <Alert />
       <input type="checkbox" id="theme" />
-      <div className="App">
+
+      <div className={`App ${(status || modal) && "mode"}`}>
         <div className="header_container">{auth.token && <Header />}</div>
 
         <div className="main">
           {status && <StatusModal />}
-          {/* <Dummy /> */}
+
           <Route exact path="/" component={auth.token ? Home : Signin} />
           <Route exact path="/register" component={Signup} />
           {/* <Route exact path="/:page" component={PageRender} />

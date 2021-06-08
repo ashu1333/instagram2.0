@@ -1,5 +1,7 @@
 import image from "../images/notice.png";
+import { useSelector } from "react-redux";
 const Carousel = ({ images, id }) => {
+  const { theme } = useSelector((state) => state);
   const isActive = (index) => {
     if (index === 0) return "active";
   };
@@ -23,7 +25,12 @@ const Carousel = ({ images, id }) => {
       <div className="carousel-inner">
         {images.map((image, index) => (
           <div key={index} className={`carousel-item ${isActive(index)}`}>
-            <img src={image.url} className="d-block w-100" alt={image.url} />
+            <img
+              src={image.url}
+              className="d-block w-100"
+              alt={image.url}
+              style={{ filter: theme ? "invert(1)" : "invert(0)" }}
+            />
           </div>
         ))}
       </div>

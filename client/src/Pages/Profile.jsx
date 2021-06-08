@@ -1,5 +1,5 @@
 import Info from "../Component/Info";
-import Posts from "../Component/Posts";
+// import Posts from "../Component/Posts";
 import { useSelector } from "react-redux";
 import LoadIcon from "../images/loading.gif";
 const Profile = () => {
@@ -19,8 +19,8 @@ const Profile = () => {
       ) : (
         <Info />
       )}
-
-      <Posts />
+      <></>
+      {/* <Posts /> */}
     </div>
   );
 };

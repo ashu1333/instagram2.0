@@ -1,4 +1,4 @@
-const Posts = require("../models/postModal");
+const Posts = require("../models/postModel");
 
 const postCtrl = {
   createPost: async (req, res) => {
@@ -67,6 +67,51 @@ const postCtrl = {
           images,
         },
       });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  likePost: async (req, res) => {
+    try {
+      const post = await Posts.find({
+        _id: req.params.id,
+        likes: req.user._id,
+      });
+      console.log(post);
+      if (post.length > 0)
+        return res.status(400).json({ msg: "You liked this post." });
+      const like = await Posts.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: { likes: req.user._id },
+        },
+        { new: true }
+      );
+      if (!like)
+        return res.status(400).json({ msg: "This Post doesn`t exist" });
+      res.json({ msg: "Liked post !" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  unlikePost: async (req, res) => {
+    try {
+      const like = await Posts.findOneAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        {
+          $pull: { likes: req.user._id },
+        },
+        { new: true }
+      );
+      if (!like) {
+        return res.status(400).json({ msg: "This post does not exist" });
+      }
+
+      res.json({ msg: "Unliked post" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

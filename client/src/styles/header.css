@@ -7,7 +7,7 @@
   min-height: 70px;
   position: sticky;
   z-index: 2;
-  /* box-shadow: 0 0 10px #ddd; */
+
   border-bottom: 1px solid rgb(0, 0, 0, 0.125);
 }
 .header {
@@ -98,7 +98,7 @@
 }
 
 @media (max-width: 768px) {
-  .header .menu {
+  .header_container .menu {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -130,5 +130,6 @@
   }
   .header .header_wrapper .search_form {
     width: 100%;
+    padding: 10px;
   }
 }

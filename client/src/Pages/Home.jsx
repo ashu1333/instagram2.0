@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import Status from "../Component/Home/Status";
-import Posts from "../Component/Home/Posts";
+import PostCard from "../Component/Home/PostCard";
 import Loading from "../images/loading.gif";
 const Home = () => {
   const { homePosts } = useSelector((state) => state);
@@ -14,7 +14,7 @@ const Home = () => {
         ) : homePosts.result == 0 ? (
           <h1> No Post Yet</h1>
         ) : (
-          <Posts />
+          <PostCard />
         )}
       </div>
 

@@ -43,3 +43,10 @@ code {
 @import url("./avatar.css");
 @import url("./home.css");
 @import url("./status-modal.css");
+@import url("./comments.css");
+
+.mode {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}

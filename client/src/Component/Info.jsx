@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { GLOBALTYPES } from "../redux/actions/globalTypes";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfileUsers } from "../redux/actions/profileActions";
@@ -18,6 +19,13 @@ const Info = () => {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
 
+  useEffect(() => {
+    if (showFollowers || showFollowing || onEdit) {
+      dispatch({ type: GLOBALTYPES.MODAL, payload: true });
+    } else {
+      dispatch({ type: GLOBALTYPES.MODAL, payload: false });
+    }
+  }, [showFollowers, showFollowing, onEdit, dispatch]);
   useEffect(() => {
     if (id === auth.user._id) {
       setUserData([auth.user]);

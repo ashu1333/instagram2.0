@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import Search from "./Search";
 import Logo from "../../images/instagram.png";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { theme } = useSelector((state) => state);
   return (
     <div className="header   ">
       <nav
@@ -21,6 +23,7 @@ const Header = () => {
             style={{
               objectFit: "cover",
               height: "50px",
+              filter: theme ? "invert(1)" : "invert(0)",
             }}
           />
 
