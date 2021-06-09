@@ -22,7 +22,7 @@ const commentCrtl = {
       await Posts.findOneAndUpdate(
         { _id: postId },
         {
-          $push: { comments: newComment._id },
+          $push: { comment: newComment._id },
         },
         { new: true }
       );

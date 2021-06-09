@@ -34,7 +34,14 @@ const postCtrl = {
         user: [...req.user.following, req.user._id],
       })
         .sort("-createdAt")
-        .populate("user likes", "avatar username fullname");
+        .populate("user likes", "avatar username fullname")
+        .populate({
+          path: "comment",
+          populate: {
+            path: "user likes",
+            select: "-password",
+          },
+        });
       console.log(posts);
       res.json({
         msg: "Sucess !",
