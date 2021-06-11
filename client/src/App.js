@@ -12,6 +12,7 @@ import Profile from "./Pages/Profile";
 import Discover from "./Pages/Discover";
 import StatusModal from "./Component/StatusModal";
 import { getPosts } from "./redux/actions/postAction";
+import { getSuggestions } from "./redux/actions/suggestActions";
 function App() {
   const dispatch = useDispatch();
   const { auth, status, modal } = useSelector((state) => state);
@@ -23,6 +24,7 @@ function App() {
   useEffect(() => {
     if (auth.token) {
       dispatch(getPosts(auth.token));
+      dispatch(getSuggestions(auth.token));
     }
   }, [auth.token, dispatch]);
   return (

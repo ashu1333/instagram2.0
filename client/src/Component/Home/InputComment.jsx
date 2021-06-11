@@ -31,7 +31,6 @@ const InputComment = ({ post }) => {
         type="text"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        style={{ filter: theme ? "invert(1)" : "invert(0)" }}
       />
       <button type="submit" className="postBtn">
         Post

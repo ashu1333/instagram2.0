@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Status from "../Component/Home/Status";
 import PostCard from "../Component/Home/PostCard";
 import Loading from "../images/loading.gif";
+import RightSideBar from "../Component/Home/RightSideBar";
 const Home = () => {
   const { homePosts } = useSelector((state) => state);
   return (
@@ -18,7 +19,9 @@ const Home = () => {
         )}
       </div>
 
-      <div className="col-md-4">suggest</div>
+      <div className="col-md-4">
+        <RightSideBar />
+      </div>
     </div>
   );
 };

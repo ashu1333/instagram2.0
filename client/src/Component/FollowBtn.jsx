@@ -6,7 +6,7 @@ const FollowBtn = ({ user }) => {
   const [followed, setFollowed] = useState(false);
   const [load, setLoad] = useState(false);
   const dispatch = useDispatch();
-  const { auth, profile } = useSelector((state) => state);
+  const { auth, profile, theme } = useSelector((state) => state);
 
   useEffect(() => {
     if (auth.user.following.find((item) => item._id === user._id)) {
@@ -45,11 +45,19 @@ const FollowBtn = ({ user }) => {
   return (
     <>
       {followed ? (
-        <button className="btn btn-danger" onClick={handleUnFollow}>
+        <button
+          className="btn btn-danger"
+          onClick={handleUnFollow}
+          style={{ filter: theme ? "invert(1)" : "invert(0)" }}
+        >
           UnFollow
         </button>
       ) : (
-        <button className="btn btn-primary" onClick={handleFollow}>
+        <button
+          className="btn btn-primary"
+          onClick={handleFollow}
+          style={{ filter: theme ? "invert(1)" : "invert(0)" }}
+        >
           Follow
         </button>
       )}

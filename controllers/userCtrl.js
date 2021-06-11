@@ -113,6 +113,49 @@ const userCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+
+  suggestionsUser: async (req, res) => {
+    try {
+      const newArr = [...req.user.following, req.user._id];
+
+      const num = req.query.num || 10;
+      const users = await Users.find({
+        _id: {
+          $nin: [...req.user.following, req.user._id],
+        },
+      })
+        .select("-password")
+        .populate("followers following", "-password");
+
+      //       const users = await Users.aggregate([
+      //         { $match: { _id: { $nin: newArr } } },
+      //         { $sample: { size: Number(num) } },
+      //         {
+      //           $lookup: {
+      //             from: "users",
+      //             localField: "followers",
+      //             foreignField: "_id",
+      //             as: "followers",
+      //           },
+      //         },
+      //         {
+      //           $lookup: {
+      //             from: "users",
+      //             localField: "following",
+      //             foreignField: "_id",
+      //             as: "following",
+      //           },
+      //         },
+      //       ]).project("-password");
+
+      res.json({
+        users,
+        result: users.length,
+      });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = userCtrl;
