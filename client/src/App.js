@@ -9,6 +9,7 @@ import Alert from "./Component/Alert/Alert";
 import Header from "./Component/Header/Header";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
+import Discover from "./Pages/Discover";
 import StatusModal from "./Component/StatusModal";
 import { getPosts } from "./redux/actions/postAction";
 function App() {
@@ -43,6 +44,11 @@ function App() {
             exact
             path="/profile/:id"
             component={auth.token ? Profile : NotFound}
+          />
+          <Route
+            exact
+            path="/discover"
+            component={auth.token ? Discover : NotFound}
           />
         </div>
       </div>

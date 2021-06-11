@@ -44,6 +44,7 @@ code {
 @import url("./home.css");
 @import url("./status-modal.css");
 @import url("./comments.css");
+@import url("./post_thumb.css");
 
 .mode {
   width: 100%;
