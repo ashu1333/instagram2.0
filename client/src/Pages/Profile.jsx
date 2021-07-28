@@ -20,7 +20,7 @@ const Profile = () => {
         <Info />
       )}
       <></>
-      {/* <Posts /> */}
+      {/*<Posts/> */}
     </div>
   );
 };

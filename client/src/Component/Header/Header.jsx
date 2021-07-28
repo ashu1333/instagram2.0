@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const { theme } = useSelector((state) => state);
   return (
-    <div className="header   ">
+    <div className="header ">
       <nav
         className="navbar justify-content-between 
        navbar-expand-lg navbar-light"

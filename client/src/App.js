@@ -11,8 +11,10 @@ import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Discover from "./Pages/Discover";
 import StatusModal from "./Component/StatusModal";
+import UserMessage from "./Pages/UserMessage";
 import { getPosts } from "./redux/actions/postAction";
 import { getSuggestions } from "./redux/actions/suggestActions";
+import Message from "./Pages/Message";
 function App() {
   const dispatch = useDispatch();
   const { auth, status, modal } = useSelector((state) => state);
@@ -31,12 +33,11 @@ function App() {
     <Router>
       <Alert />
       <input type="checkbox" id="theme" />
-
+      {/* <div className="header_container"></div> */}
       <div className={`App ${(status || modal) && "mode"}`}>
-        <div className="header_container">{auth.token && <Header />}</div>
-
         <div className="main">
           {status && <StatusModal />}
+          {auth.token && <Header />}
 
           <Route exact path="/" component={auth.token ? Home : Signin} />
           <Route exact path="/register" component={Signup} />
@@ -51,6 +52,18 @@ function App() {
             exact
             path="/discover"
             component={auth.token ? Discover : NotFound}
+          />
+
+          <Route
+            exact
+            path="/message"
+            component={auth.token ? Message : NotFound}
+          />
+
+          <Route
+            exact
+            path="/message/:id"
+            component={auth.token ? UserMessage : NotFound}
           />
         </div>
       </div>

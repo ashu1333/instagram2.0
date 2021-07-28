@@ -211,7 +211,7 @@ const Signup = () => {
 
           <div className="right-column-login text-center">
             <p>
-              Have a account? <a href="/signin">Sign in</a>
+              Have a account? <a href="/">Sign in</a>
             </p>
           </div>
         </div>

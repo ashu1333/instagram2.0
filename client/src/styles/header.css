@@ -1,5 +1,5 @@
 /*=========HEADER==========*/
-.header_container {
+/* .header_container {
   width: 100%;
   background: white;
   top: 0;
@@ -14,6 +14,18 @@
   max-width: 900px;
   width: 100%;
   margin: auto;
+} */
+
+.header {
+  width: 100%;
+  min-height: 70px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  box-shadow: 0 0 10px #ddd;
+  background: #ffffff;
+  border: 1px solid rgb(0, 0, 0, 0.125);
 }
 
 .header .navbar {

@@ -25,7 +25,7 @@ const UserCard = ({
           style={{ textDecoration: "none", color: "inherit" }}
           onClick={handleCloseAll}
         >
-          <Avatar src={user.avatar} size={"big-avatar"} />
+          <Avatar src={user?.avatar} size={"big-avatar"} />
           <div className="ml-2">
             <span className="d-block">{user.username}</span>
             <small style={{ opacity: 0.7 }}>{user.fullname}</small>

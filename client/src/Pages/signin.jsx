@@ -91,7 +91,7 @@ const Signin = () => {
 
           <div className="right-column-login text-center">
             <p>
-              Don`t have a account? <a href="/signup">Sign Up</a>
+              Don`t have a account? <a href="/register">Sign Up</a>
             </p>
           </div>
         </div>
