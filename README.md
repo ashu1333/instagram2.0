@@ -3,7 +3,7 @@ Social media app like Instagram using REACT | REDUX | NODE | SOCKET.IO
 
 ___This Project is under construction_ 
 
-Home Screen ->
+𝐇𝐨𝐦𝐞 𝐒𝐜𝐫𝐞𝐞𝐧 ->
 [![Screenshot-1.png](https://i.postimg.cc/MTr6hjWZ/Screenshot-1.png)](https://postimg.cc/ftmQdyt1)
 
 
